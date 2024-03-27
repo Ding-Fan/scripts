@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.youtube.com/watch*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      DRagon Vase
 // @description Remove tracking query parameters from YouTube share links
 // @license     MIT
