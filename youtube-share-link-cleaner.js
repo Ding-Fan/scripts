@@ -39,11 +39,23 @@
       );
 
       if (dialog && window.getComputedStyle(dialog).display !== "none") {
+        // has dialog and is displayed
         if (inputField && inputField.value) {
           cleanShareUrl(inputField);
         }
+      } else if (dialog && window.getComputedStyle(dialog).display === "none") {
+        // has dialog but not displayed, stop checking
+        clearInterval(intervalId);
+      } else if (!dialog) {
+        // no dialog, keep checking for 2 seconds incase it's not displayed due to slow internet/application
+        setTimeout(() => {
+          if (!dialog) {
+            // no dialog, stop checking
+            clearInterval(intervalId);
+          }
+        }, 2000);
       } else {
-        // If the dialog is not displayed, stop checking
+        // something went wrong, stop checking
         clearInterval(intervalId);
       }
     }, 500); // Check every 500ms
